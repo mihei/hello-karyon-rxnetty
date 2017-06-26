@@ -1,0 +1,15 @@
+image: ubuntu:latest
+
+stages:
+  - spinnaker
+
+
+trigger spinnaker pipeline:
+  stage: spinnaker
+  tags:
+    - aws
+    - ccm
+  script:
+    - apt-get update
+    - apt-get -y install curl
+    - "curl -X POST --header 'Content-Type: application/json' --header 'Accept: */*' -d '{}' http://172.18.87.232:9092/pipelines/miheitest/test-pipeline"
